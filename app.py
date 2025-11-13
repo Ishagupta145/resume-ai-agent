@@ -8,9 +8,12 @@ import re
 from dotenv import load_dotenv
 
 # --- CONFIGURATION ---
-load_dotenv()  # <--- This loads the variables from your .env file
-API_KEY = "AIzaSyBqaAOdFNItpPDiPd9r9bi27DY1zxEysps" 
-genai.configure(api_key=API_KEY)
+load_dotenv()  # <--- This loads the variables from your .env file 
+API_KEY = os.getenv("GEMINI_API_KEY")
+if not API_KEY:
+    st.error("API Key not found!")
+else:
+    genai.configure(api_key=API_KEY)
 
 
 # --- HELPER FUNCTIONS ---
